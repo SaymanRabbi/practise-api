@@ -64,56 +64,121 @@ const [,personName] = [ 23,"KeepRolling", "Discover"]
 
 // ৭. একদম প্রাথমিক স্টেপ হিসেবে jsonplaceholder এর ওয়েবসাইট থেকে ডাটা fetch করে সেটাকে কনসোল এ দেখাতে হবে। ধরো তুমি তাদের ওয়েবসাইট এ photos এর API এর লিংক কোনটা সেটা জাভাস্ক্রিপ্ট দিয়ে কোড করে সেই ডাটা কনসোল এ দেখতে পারতেছো কিনা। তারপর কয়েকটা কার্ড বানাবে (হতে পারে বুটস্ট্রাপ এর কার্ড) সেগুলা আবার তুমি html দিয়ে ওয়েবসাইট এ ছবি এবং ছবির নিচে ছবির টাইটেল দেখাবে।
 // task nine
-const url = `https://jsonplaceholder.typicode.com/photos`;
-const loadData = () => {
-    fetch(url)
-        .then(res => res.json())
-    .then(data => showData(data.slice(0,20)))
-}
-loadData();
-const showData = (data) => {
-    console.log(data)
-    const container = document.getElementById('Container')
-    data.forEach(x => {
-        const div = document.createElement('div');
-        div.innerHTML = `
-            <div class="col">
-              <div class="card h-100">
-                <img src="${x.url}" class="card-img-top" alt="">
-                <div class="card-body">
-                  <h5 class="card-title">${x.title}</h5>
-                  <button class = "btn btn-danger" onclick="detail('${x.id}')">Show Details </button>
-                </div>
+// const url = `https://jsonplaceholder.typicode.com/photos`;
+// const loadData = () => {
+//     fetch(url)
+//         .then(res => res.json())
+//     .then(data => showData(data.slice(0,20)))
+// }
+// loadData();
+// const showData = (data) => {
+//     console.log(data)
+//     const container = document.getElementById('Container')
+//     data.forEach(x => {
+//         const div = document.createElement('div');
+//         div.innerHTML = `
+//             <div class="col">
+//               <div class="card h-100">
+//                 <img src="${x.url}" class="card-img-top" alt="">
+//                 <div class="card-body">
+//                   <h5 class="card-title">${x.title}</h5>
+//                   <button class = "btn btn-danger" onclick="detail('${x.id}')">Show Details </button>
+//                 </div>
                 
-              </div>
-            </div>
-        `
-        container.appendChild(div);
-    })
-}
+//               </div>
+//             </div>
+//         `
+//         container.appendChild(div);
+//     })
+// }
 
 // ৮. প্রত্যেকটা ফটোতে ক্লিক করলে উপরে আরেকটা div থাকবে। ক্লিক করার পর ডাইনামিকভাবে ওই ফটো এর ডাটা লোড করবে। সেটা করার জন্য আগের ডাটা লোড করার API এর লিংক এর পরে photos এর পরে ডাইনামিকভাবে ${id} বসিয়ে দিবে। এরপর ডিটেইল অংশে photo এর url দিয়ে মেইন ইমেজ এবং thumbnail ইমেজ দুইটাই দেখাবে। সাথে সাথে title প্রপার্টিও দেখাবে।
 // task ten
-const detail = (details) => {
-    const url = `https://jsonplaceholder.typicode.com/photos/${details}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => popupDetail(data));
-}
-const popupDetail = (popup) => {
-    const popupContainer = document.getElementById('popup');
-    popupContainer.innerHTML = `
-           <div class="card mx-auto" style="width: 18rem;">
-            <img src="${popup.url}" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">${popup.title}</h5>
-              </div>
-              </div>
-    `
-}
+// const detail = (details) => {
+//     const url = `https://jsonplaceholder.typicode.com/photos/${details}`;
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(data => popupDetail(data));
+// }
+// const popupDetail = (popup) => {
+//     const popupContainer = document.getElementById('popup');
+//     popupContainer.innerHTML = `
+//            <div class="card mx-auto" style="width: 18rem;">
+//             <img src="${popup.url}" class="card-img-top" alt="">
+//             <div class="card-body">
+//               <h5 class="card-title">${popup.title}</h5>
+//               </div>
+//               </div>
+//     `
+// }
 
 // ৯. তুমি যে ডাটা লোড করেছো। বা ডাটা ওয়েবসাইট এ দেখাচ্ছ। সেই কোড এর মধ্যে arrow ফাংশন ইউজ করতে পারতেছো কিনা। যখন লুপ চালাচ্ছ সেখানে forEach ইউজ করতে পারতেছো কিনা।
 // task eleven (solved)
 
-// হয় মডিউল ৩৩ ভালো করে দেখে ফেলো। বিশেষ করে the meal db রিলেটেড ৩৩-৫ থেকে ৩৩-৮ পর্যন্ত। তারপরে আরো সময় থাকলে এর আরেকটা খালতো ভাই the coktaildb থেকে কিছু জিনিস এনে দেখাবে। একজাক্টলি কি দেখাতে হবে। সেটা আমি বলে দিবো না। তুমি ওদের ওয়েবসাইট এ যাও। সেখানে কি কি লেখা আছে সেগুলা পড়ো। api গুলা এর ছোট করে কি কি করে বলা আছে। সেগুলা দেখো। তারপর কিছু ডাটা লোড করো। সেই ডাটাগুলো দেখাও। এইখানে সার্চ ফাংশনালিটি ইমপ্লিমেন্ট করো। অনেকটা mealdb এর মতো। আবার কোন একটাতে ক্লিক করলে সেটার ডিটেল দেখাবে। 
+// হয় মডিউল ৩৩ ভালো করে দেখে ফেলো। বিশেষ করে the meal db রিলেটেড ৩৩-৫ থেকে ৩৩-৮ পর্যন্ত। তারপরে আরো সময় থাকলে এর আরেকটা খালতো ভাই the coktaildb থেকে কিছু জিনিস এনে দেখাবে। একজাক্টলি কি দেখাতে হবে। সেটা আমি বলে দিবো না। তুমি ওদের ওয়েবসাইট এ যাও। সেখানে কি কি লেখা আছে সেগুলা পড়ো। api গুলা এর ছোট করে কি কি করে বলা আছে। সেগুলা দেখো। তারপর কিছু ডাটা লোড করো। সেই ডাটাগুলো দেখাও। এইখানে সার্চ ফাংশনালিটি ইমপ্লিমেন্ট করো। অনেকটা mealdb এর মতো। আবার কোন একটাতে ক্লিক করলে সেটার ডিটেল দেখাবে।
 // task twelve
+
+const Input = document.getElementById('Input');
+document.getElementById('basic-addon').addEventListener('click', () => {
+    const inputText = Input.value;
+    Input.value = '';
+    const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`;
+    fetch(url)
+        .then(res => res.json())
+    .then(data => showData(data.drinks))
+}) 
+const showData = (datas) => {
+    datas.forEach(x => {
+        const Parent = document.getElementById('Parent')
+        const div = document.createElement('div');
+        div.className = 'col';
+        div.innerHTML = `<div class="card h-100">
+        <img src="${x.strDrinkThumb}" class="card-img-top" alt="">
+        <div class="card-body">
+         <h5 class="card-title">${x.strCategory}</h5>
+         <button class = "btn btn-danger" onclick="popup('${x.idDrink}')">Show Details</button>
+        </div>
+        </div>`
+        Parent.appendChild(div);
+      })  
+}
+const popup = async(popupData) => {
+    const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${popupData}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    popUpShow(data)
+}
+
+const popUpShow = (popup) => {
+    const popupChild = document.getElementById('popup-container');
+      popupChild.innerHTML = `
+             <div class="popup-child justify-content-center align-items-center d-flex w-100 h-100" id = 'popup-child'>
+             <div class="card mb-3 w-50 position-relative">
+             <button class = "custom" id="close">X</button>
+             <div class="row g-0">
+               <div class="col-md-6">
+                 <img src="${popup.drinks[0].strDrinkThumb}" class="img-fluid rounded-start" alt="">
+               </div>
+               <div class="col-md-6 py-2">
+                 <div class="card-body">
+                 <button class ="btn btn-danger mb-3">HOT</button>
+                   <h5 class="card-title text-danger fw-bold">CockTale Name:${popup.drinks[0].strCategory}</h5>
+                   <h5 class="card-title">CockTale Sub Name:${popup.drinks[0].strAlcoholic}</h5>
+                   <p class="card-text">${popup.drinks[0].strInstructionsIT}</p>
+                   <span>STRNG : ${popup.drinks[0].strIngredient1} </span>
+                   <span> ${popup.drinks[0].strIngredient2} </span>
+                   <span> ${popup.drinks[0].strIngredient3} </span>
+                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                 </div>
+               </div>
+             </div>
+           </div>
+      </div>
+    
+    ` 
+    document.getElementById('popup-container').style.display = 'block'
+    document.getElementById('close').addEventListener('click', () => {
+        document.getElementById('popup-container').style.display = 'none'
+    })
+}
+
